@@ -1,0 +1,118 @@
+:root {
+    --bg-color: #f4f7f6;
+    --text-color: #333;
+    --accent-color: #3498db;
+    --secondary-color: #2c3e50;
+    --card-bg: #ffffff;
+    --shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    line-height: 1.6;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.container {
+    background-color: var(--card-bg);
+    width: 100%;
+    max-width: 450px;
+    border-radius: 12px;
+    padding: 30px;
+    box-shadow: var(--shadow);
+    text-align: center;
+}
+
+header {
+    margin-bottom: 25px;
+}
+
+.profile-photo img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 15px;
+    border: 3px solid var(--accent-color);
+}
+
+h1 {
+    font-size: 1.8rem;
+    color: var(--secondary-color);
+    margin-bottom: 5px;
+}
+
+.subtitle {
+    font-weight: 600;
+    color: var(--accent-color);
+    margin-bottom: 5px;
+}
+
+.university {
+    font-size: 0.9rem;
+    color: #777;
+}
+
+section {
+    margin-bottom: 25px;
+}
+
+h2 {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+    color: var(--secondary-color);
+    border-bottom: 2px solid var(--bg-color);
+    display: inline-block;
+    padding-bottom: 3px;
+}
+
+.bio p {
+    font-size: 0.95rem;
+    text-align: justify;
+}
+
+.links {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.btn {
+    display: block;
+    padding: 10px;
+    text-decoration: none;
+    color: white;
+    background-color: var(--accent-color);
+    border-radius: 6px;
+    transition: background 0.3s ease;
+    font-weight: 500;
+}
+
+.btn:hover {
+    background-color: #2980b9;
+}
+
+footer {
+    margin-top: 20px;
+    font-size: 0.8rem;
+    color: #999;
+}
+
+/* Адаптивність */
+@media (max-width: 400px) {
+    .container {
+        padding: 20px;
+    }
+}
