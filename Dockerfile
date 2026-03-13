@@ -9,3 +9,5 @@ EXPOSE 80
 
 # Запускаємо nginx
 CMD ["nginx", "-g", "daemon off;"]
+
+LABEL org.opencontainers.image.source=https://github.com/3Mira3/IPZ_lab1
