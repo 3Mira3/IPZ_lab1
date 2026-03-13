@@ -7,8 +7,26 @@ on:
     branches: [ main ]
 
 jobs:
+
   lint:
-    # ... (твій lint джоб без змін)
+    name: Linter (super-linter)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout код
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Запуск Super-Linter
+        uses: super-linter/super-linter/slim@v7
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          VALIDATE_ALL_CODEBASE: false
+          DEFAULT_BRANCH: main
+          VALIDATE_HTML: true
+          VALIDATE_CSS: true
+          VALIDATE_JAVASCRIPT_ES: true
+          VALIDATE_MARKDOWN: true
 
   build-and-push:
     name: Build & Push Docker image
@@ -22,11 +40,10 @@ jobs:
       - name: Checkout код
         uses: actions/checkout@v4
 
-      # ← Додай цей крок обов'язково!
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v3   # або v4, якщо вже вийшла новіша
+      - name: Налаштування Docker Buildx
+        uses: docker/setup-buildx-action@v3
         with:
-          driver: docker-container   # це ключовий параметр для GHA cache
+          driver: docker-container
           install: true
 
       - name: Login до GitHub Container Registry
@@ -52,7 +69,9 @@ jobs:
           context: .
           file: ./Dockerfile
           push: true
+          pull: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
+          platforms: linux/amd64
           cache-from: type=gha
           cache-to: type=gha,mode=max
